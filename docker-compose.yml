@@ -1,0 +1,23 @@
+version: '3.1'
+services:
+  nginx:
+    image: nwtgck/nginx-http3
+    ports:
+      - '80:80'
+      - '443:443'
+      - '443:443/udp'
+    depends_on:
+      - ghost
+    restart: always
+    volumes:
+      - ./nginx.conf:/usr/local/nginx/conf/nginx.conf
+      # NOTE: Should set cert properly
+      - /etc/letsencrypt/live/nwtgck-nginx-http3.tk/fullchain.pem:/ssl_certs/server.crt
+      # NOTE: Should set key properly
+      - /etc/letsencrypt/live/nwtgck-nginx-http3.tk/privkey.pem:/ssl_certs/server.key
+
+  ghost:
+    image: ghost
+    restart: always
+    expose:
+      - "2368"
