@@ -12,9 +12,9 @@ services:
     volumes:
       - ./nginx.conf:/usr/local/nginx/conf/nginx.conf
       # NOTE: Should set cert properly
-      - /etc/letsencrypt/live/nwtgck-nginx-http3.tk/fullchain.pem:/ssl_certs/server.crt
+      - /etc/letsencrypt/live/nwtgck-nginx-http3.tk/fullchain.pem:/etc/ssl/certs/server.crt
       # NOTE: Should set key properly
-      - /etc/letsencrypt/live/nwtgck-nginx-http3.tk/privkey.pem:/ssl_certs/server.key
+      - /etc/letsencrypt/live/nwtgck-nginx-http3.tk/privkey.pem:/etc/ssl/private/server.key
 
   ghost:
     image: ghost
